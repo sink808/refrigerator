@@ -1,0 +1,45 @@
+<ng-template #editModel let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">編輯</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editFoodForm">
+      <div class="form-group">
+        <label>名稱</label>
+        <div class="input-group">
+          <input class="form-control" [formControl]="editFoodForm.controls['name']">
+        </div>
+        <label>數量</label>
+        <div class="input-group">
+          <input type="number" class="form-control" [formControl]="editFoodForm.controls['number']">
+        </div>
+        <label>單位</label>
+        <div class="input-group">
+          <input class="form-control" [formControl]="editFoodForm.controls['unit']">
+        </div>
+        <label for="startDate">購買日期</label>
+        <div class="input-group">
+          <input id="startDate" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [formControl]="editFoodForm.controls['startDate']">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+          </div>
+        </div>
+        <label for="endDate">有效日期</label>
+        <div class="input-group">
+          <input id="endDate" class="form-control" placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker #dp2="ngbDatepicker" [formControl]="editFoodForm.controls['endDate']">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp2.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn hvr-shutter-out-horizontal" (click)="modal.close('Save click'); submitForm();">儲存</button>
+  </div>
+</ng-template>
+
+<button class="btn hvr-shutter-out-horizontal" (click)="modelService.open(editModel)"><i class="fa fa-edit"></i></button>

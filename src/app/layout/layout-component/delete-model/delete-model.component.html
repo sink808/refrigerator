@@ -1,0 +1,16 @@
+<ng-template #deleteModel let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">刪除</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>確定刪除？</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn hvr-shutter-out-horizontal" (click)="modal.close('Save click');remove();">確定</button>
+  </div>
+</ng-template>
+
+<button class="btn hvr-shutter-out-horizontal" (click)="modelService.open(deleteModel)"><i class="fa fa-trash"></i></button>

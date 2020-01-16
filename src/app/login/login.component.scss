@@ -1,0 +1,53 @@
+@import '../../scss/variable.scss';
+.layout{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 0;
+    background: url('../../assets/img/BBQ-tomatoes-potatoes-meat-grill-food_5120x2880.jpg') no-repeat;
+    background-size: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #cd9557;
+    opacity: .7;
+    z-index: 1;
+}
+
+.masthead {
+    position: absolute;
+    z-index: 2;
+    background-color: #2e6608;
+    opacity: .4;
+    height: 100%;
+    width: 680px;
+    transform: skewX(-8deg);
+    transform-origin: top right;
+    @include phone-width{
+      width: 100%;
+      transform: none;
+    }
+}
+
+.content {
+    z-index: 3;
+    position: relative;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    &-text {
+        color: #fff;
+    }
+
+    @include phone-width{
+        width: 100%;
+   }
+}
