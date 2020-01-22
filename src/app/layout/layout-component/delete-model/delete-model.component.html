@@ -9,8 +9,8 @@
     <div>確定刪除？</div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn hvr-shutter-out-horizontal" (click)="modal.close('Save click');remove();">確定</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('Save click');remove();">刪除</button>
   </div>
 </ng-template>
 
-<button class="btn hvr-shutter-out-horizontal" (click)="modelService.open(deleteModel)"><i class="fa fa-trash"></i></button>
+<button class="btn hvr-icon-pulse" (click)="modelService.open(deleteModel)"><i class="fa fa-trash hvr-icon"></i></button>

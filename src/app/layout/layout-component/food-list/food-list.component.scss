@@ -1,5 +1,35 @@
+@import '../../../../scss/variable.scss';
 .addInputGroup {
     display: flex;
-    width: 200px;
+    width: 100%;
     align-items: center;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    padding: 3px 15px;
+    margin: 5px 0;
+    color: white;
+    background-color: rgba(256, 256, 256, 0.4);
+    @include phone-width{
+        font-size: small;
+    }
+    span:nth-child(1)  {
+        width: calc( 50% - 43px );
+    }
+    span:nth-child(2)  {
+        width: 20%;
+        margin: 0 3px;
+    }
+    span:nth-child(3)  {
+        width: calc( 30% - 44px );
+    }
+    span:nth-child(4)  {
+        width: 81px;
+    }
+}
+
+.expired {
+    background-color: #ED4C67;
 }

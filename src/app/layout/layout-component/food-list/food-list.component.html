@@ -1,23 +1,23 @@
 <div>
-  <div *ngFor="let food of foodList.value; let index = index;">
+  <div *ngFor="let food of foodList.value; let index = index;" class="list"
+    [ngClass]="{ 'expired': isExpired(food?.endDate) }">
     <span>{{food.name}}</span>
     <span>{{food.number}}</span>
     <span>{{food.unit}}</span>
-    <span>{{food?.startDate | json}}</span>
-    <span>{{food?.endDate | json}}</span>
-    <!-- <span>{{food?.startDate | date: 'yyyy-MM-dd'}}</span>
-    <span>{{food?.endDate | date: 'yyyy-MM-dd'}}</span> -->
-    <app-edit-model [foodForm]="foodList.at(index)" (save)="setDbFoodList(foodList.value)"></app-edit-model>
-    <app-delete-model (delete)="foodList.removeAt(index);setDbFoodList(foodList.value);"></app-delete-model>
+    <span>
+      <app-edit-model [foodForm]="foodList.at(index)" (save)="setDbFoodList(foodList.value)"></app-edit-model>
+      <app-delete-model (delete)="foodList.removeAt(index);setDbFoodList(foodList.value);"></app-delete-model>
+    </span>
   </div>
- 
+
   <form [formGroup]="addFoodForm">
     <div class="addInputGroup">
       <input type="text" class="form-control" [formControl]="addFoodForm.controls['name']">
       <!-- <div *ngIf="addFoodForm.controls['name'].errors?.required">X</div> -->
-      <input type="number" class="form-control" [formControl]="addFoodForm.controls['number']">
+      <input type="number" class="form-control" [formControl]="addFoodForm.controls['number']"
+        style="margin: 0 5px;">
       <input type="text" class="form-control" [formControl]="addFoodForm.controls['unit']">
-      <i class="fa fa-plus-circle" (click)="addFood()"></i>
+      <i class="fa fa-plus-circle" (click)="addFood()" style="margin-left: 2px;"></i>
     </div>
   </form>
 </div>

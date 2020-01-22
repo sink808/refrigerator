@@ -38,8 +38,8 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn hvr-shutter-out-horizontal" (click)="modal.close('Save click'); submitForm();">儲存</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('Save click'); submitForm();">儲存</button>
   </div>
 </ng-template>
 
-<button class="btn hvr-shutter-out-horizontal" (click)="modelService.open(editModel)"><i class="fa fa-edit"></i></button>
+<button class="btn hvr-icon-pulse" (click)="modelService.open(editModel)"><i class="fa fa-edit hvr-icon"></i></button>

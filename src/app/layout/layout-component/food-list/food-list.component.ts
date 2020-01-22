@@ -1,10 +1,8 @@
-import { Component, OnInit, Input, QueryList, ViewChildren } from '@angular/core';
-import { Food } from '../const';
+import { Component, OnInit, Input } from '@angular/core';
+import { Food, ObjDate } from '../const';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { ModelService } from '../../../services/model.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 @Component({
   selector: 'app-food-list',
   templateUrl: './food-list.component.html',
@@ -13,8 +11,6 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
 export class FoodListComponent implements OnInit {
   private dbName: string = this.route.snapshot.paramMap.get('name');
-
-  foodList: FormArray = this.fb.array([]);
   private initFood: Food = {
     // 定義表格的預設值
     name: '',
@@ -23,11 +19,11 @@ export class FoodListComponent implements OnInit {
     startDate: null,
     endDate: null
   };
+  foodList: FormArray = this.fb.array([]);
   addFoodForm: FormGroup;
   @Input() public docName: string;
 
   constructor(private db: AngularFirestore,
-              private auth: ModelService,
               private route: ActivatedRoute,
               private fb: FormBuilder) {
   }
@@ -39,6 +35,7 @@ export class FoodListComponent implements OnInit {
 
   addFood(): void {
     this.foodList.push(this.addFoodForm);
+    this.resetAddFoodForm();
     this.setDbFoodList(this.foodList.value);
   }
 
@@ -47,12 +44,17 @@ export class FoodListComponent implements OnInit {
       foodList: list,
     })
       .then(() => {
-        this.resetAddFoodForm();
         console.log('Document successfully written!');
       })
       .catch((error) => {
         console.error('Error writing document: ', error);
       });
+  }
+
+  isExpired(date: ObjDate): boolean {
+    const today: Date = new Date();
+    const inputDate: Date = date ? new Date(`${date.year}-${date.month}-${date.day}`) : null;
+    return (inputDate || new Date()) < today;
   }
 
   private resetAddFoodForm(): void {
@@ -69,7 +71,6 @@ export class FoodListComponent implements OnInit {
               this.foodList.push(this.fb.group(food));
             });
           }
-          console.log(this.foodList.value);
       } else {
           // doc.data() will be undefined in this case
           console.log('No such document!');
@@ -77,8 +78,6 @@ export class FoodListComponent implements OnInit {
     });
   }
 
-  public test(): void {
-    console.log('XXXXD');
-  }
+
 }
 

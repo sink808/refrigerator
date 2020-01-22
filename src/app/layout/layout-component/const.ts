@@ -1,7 +1,13 @@
+export interface ObjDate {
+  day: number;
+  month: number;
+  year: number;
+}
+
 export interface Food {
   name: string;
   number: number;
   unit: string;
-  startDate?: Date;
-  endDate?: Date;
+  startDate?: ObjDate;
+  endDate?: ObjDate;
 }
